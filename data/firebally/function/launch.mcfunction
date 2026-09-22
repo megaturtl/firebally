@@ -1,9 +1,13 @@
 # summon 1.5 blocks in front of the eyes
-execute anchored eyes run summon fireball ^ ^ ^1.5 {Tags:["fb_new"]}
-execute store result entity @e[type=fireball,tag=fb_new,limit=1] ExplosionPower byte 1 run scoreboard players get #fireball_power fb_config
+execute anchored eyes run summon fireball ^ ^ ^1.5 {Tags:["fb_new","fb_fireball"]}
 
 # marker 1 block further to track look direction
 execute anchored eyes run summon marker ^ ^ ^2.5 {Tags:["fb_ahead"]}
+
+# initially set the fireball's owner to the launcher
+data modify entity @e[type=fireball,tag=fb_new,limit=1] Owner set from entity @s UUID
+
+execute store result entity @e[type=fireball,tag=fb_new,limit=1] ExplosionPower byte 1 run scoreboard players get #fireball_power fb_config
 
 # marker pos - fireball pos = look direction
 # scaling by 1000 to store as integers with 3 dp precision
