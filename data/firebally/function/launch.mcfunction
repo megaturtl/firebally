@@ -1,5 +1,6 @@
 # summon 1.5 blocks in front of the eyes
-execute anchored eyes run summon fireball ^ ^ ^1.5 {ExplosionPower:100b,Tags:["fb_new"]}
+execute anchored eyes run summon fireball ^ ^ ^1.5 {Tags:["fb_new"]}
+execute store result entity @e[type=fireball,tag=fb_new,limit=1] ExplosionPower byte 1 run scoreboard players get #fireball_power fb_config
 
 # marker 1 block further to track look direction
 execute anchored eyes run summon marker ^ ^ ^2.5 {Tags:["fb_ahead"]}
@@ -16,10 +17,14 @@ scoreboard players operation #x fb_tmp -= #fx fb_tmp
 scoreboard players operation #y fb_tmp -= #fy fb_tmp
 scoreboard players operation #z fb_tmp -= #fz fb_tmp
 
-# set velocity to the calculated look direction (0.001 is a speed of 1 block per tick)
-execute store result entity @e[type=fireball,tag=fb_new,limit=1] Motion[0] double 0.001 run scoreboard players get #x fb_tmp
-execute store result entity @e[type=fireball,tag=fb_new,limit=1] Motion[1] double 0.001 run scoreboard players get #y fb_tmp
-execute store result entity @e[type=fireball,tag=fb_new,limit=1] Motion[2] double 0.001 run scoreboard players get #z fb_tmp
+# direction is scaled by 1000
+# applies config speed before converting back to blocks per tick motion values
+scoreboard players operation #x fb_tmp *= #fireball_speed_milliblocks_per_tick fb_config
+scoreboard players operation #y fb_tmp *= #fireball_speed_milliblocks_per_tick fb_config
+scoreboard players operation #z fb_tmp *= #fireball_speed_milliblocks_per_tick fb_config
+execute store result entity @e[type=fireball,tag=fb_new,limit=1] Motion[0] double 0.000001 run scoreboard players get #x fb_tmp
+execute store result entity @e[type=fireball,tag=fb_new,limit=1] Motion[1] double 0.000001 run scoreboard players get #y fb_tmp
+execute store result entity @e[type=fireball,tag=fb_new,limit=1] Motion[2] double 0.000001 run scoreboard players get #z fb_tmp
 
 # remove markers
 kill @e[type=marker,tag=fb_ahead]
