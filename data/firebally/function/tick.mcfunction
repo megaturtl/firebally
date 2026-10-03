@@ -19,5 +19,9 @@ execute as @e[type=fireball,tag=fb_fireball] run function firebally:protect_fire
 # handle all hunters that used a carrot on a stick in this tick while the game is running
 execute if score #running fb_game matches 1 as @a[team=hunters,scores={fb_carrot_uses=1..}] run function firebally:on_use
 
+# give glowing while holding the fireball
+effect clear @a glowing
+execute as @a if items entity @s weapon.mainhand carrot_on_a_stick[custom_data~{firebally:1b}] run effect give @s glowing 1 0 true
+
 # clear the counters
 scoreboard players reset @a fb_carrot_uses
