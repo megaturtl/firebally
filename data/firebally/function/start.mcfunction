@@ -1,9 +1,12 @@
 # start the game and begin each hunter's initial delay
 scoreboard players set #running fb_game 1
 
-# remove fireballs and death counters from existing games
+# remove fireballs, flight state, and death counters from existing games
 clear @a carrot_on_a_stick[custom_data~{firebally:1b}]
 kill @e[type=item,nbt={Item:{components:{"minecraft:custom_data":{firebally:1b}}}}]
+kill @e[type=fireball,tag=fb_fireball]
+scoreboard players reset * fb_fireball_distance
+scoreboard players reset * fb_fireball_power
 scoreboard players reset @a fb_deaths
 
 # give every hunter an independent initial timer

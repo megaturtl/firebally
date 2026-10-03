@@ -7,7 +7,8 @@ execute anchored eyes run summon marker ^ ^ ^2.5 {Tags:["fb_ahead"]}
 # initially set the fireball's owner to the launcher
 data modify entity @e[type=fireball,tag=fb_new,limit=1] Owner set from entity @s UUID
 
-execute store result entity @e[type=fireball,tag=fb_new,limit=1] ExplosionPower byte 1 run scoreboard players get #fireball_power fb_config
+# start at power 1 and ramp up during flight
+data modify entity @e[type=fireball,tag=fb_new,limit=1] ExplosionPower set value 1b
 
 # marker pos - fireball pos = look direction
 # scaling by 1000 to store as integers with 3 dp precision

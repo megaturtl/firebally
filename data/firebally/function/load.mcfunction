@@ -4,6 +4,10 @@ scoreboard objectives add fb_carrot_uses minecraft.used:minecraft.carrot_on_a_st
 # for aiming math in launch.mcfunction
 scoreboard objectives add fb_tmp dummy
 
+# per-fireball distance and current power tracking
+scoreboard objectives add fb_fireball_distance dummy
+scoreboard objectives add fb_fireball_power dummy
+
 # game lifecycle, timers, and delay config
 scoreboard objectives add fb_game dummy
 scoreboard objectives add fb_config dummy

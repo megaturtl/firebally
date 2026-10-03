@@ -7,6 +7,12 @@ execute unless score #running fb_game matches 1 run clear @a carrot_on_a_stick[c
 # increment all hunter timers
 execute if score #running fb_game matches 1 as @a[team=hunters] run function firebally:hunter_tick
 
+# kill fireballs that go above build height
+function firebally:kill_above_build_height
+
+# ramp each fireball's explosion power up according to its flight distance
+execute as @e[type=fireball,tag=fb_fireball] run function firebally:update_fireball_power
+
 # apply resitance for each fireball entity's current owner
 execute as @e[type=fireball,tag=fb_fireball] run function firebally:protect_fireball_owner
 
