@@ -7,5 +7,5 @@ The player who launches a fireball (or most recently hits it) gets resistance 25
 
 Config customisation can be done in `data/firebally/function/config.mcfunction` (timers, maximum explosion power, fireball speed, and power ramp distance) Reload the datapack after changing any values.
 
-Each hunter has a separate countdown shown in their action bar for when they will get their next fireball.
+Each hunter has a separate countdown in the tablist. It shows `0` when their fireball is ready. The action bar shows the countdown only during the cooldown.
 Fireballs start at power 1 and reach the configured max power after travelling the configured distance. They are also removed at the upper build limit.

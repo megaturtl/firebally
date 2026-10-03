@@ -16,6 +16,9 @@ scoreboard objectives add fb_countdown dummy
 scoreboard objectives add fb_deaths minecraft.custom:minecraft.deaths
 function firebally:config
 
+# show fireball cooldown in tablist
+scoreboard objectives setdisplay list fb_countdown
+
 # /team join hunters <player>
 team add hunters
 team modify hunters color red

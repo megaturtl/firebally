@@ -7,5 +7,5 @@ scoreboard players reset @s fb_deaths
 
 # each hunter's timer runs independently
 execute if score @s fb_timer matches 1.. run scoreboard players remove @s fb_timer 1
-execute if score @s fb_timer matches 1.. run function firebally:show_timer
+function firebally:show_timer
 execute if score @s fb_timer matches ..0 run function firebally:give_fireball
