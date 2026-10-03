@@ -14,7 +14,7 @@ scoreboard objectives add fb_config dummy
 scoreboard objectives add fb_timer dummy
 scoreboard objectives add fb_countdown dummy
 scoreboard objectives add fb_deaths minecraft.custom:minecraft.deaths
-function firebally:config
+function firebally:config/init
 
 # show fireball cooldown in tablist
 scoreboard objectives setdisplay list fb_countdown

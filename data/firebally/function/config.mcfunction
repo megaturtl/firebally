@@ -1,25 +1,9 @@
-# Delay for receiving a fireball when the game is started
-scoreboard players set #initial_fireball_delay_seconds fb_config 60
-
-# Delay for receiving a fireball after a hunter respawns
-scoreboard players set #respawn_fireball_delay_seconds fb_config 60
-
-# Delay for receiving a new fireball after a hunter uses theirs
-scoreboard players set #regular_fireball_delay_seconds fb_config 60
-
-# Maximum fireball power (1 to 127)
-scoreboard players set #fireball_power fb_config 100
-
-# Distance a fireball needs to go to reach max power
-scoreboard players set #fireball_power_ramp_distance_blocks fb_config 100
-
-# Fireball speed (1000 is 1 block per tick)
-scoreboard players set #fireball_speed_milliblocks_per_tick fb_config 500
-
-
-
-# DO NOT TOUCH!
-scoreboard players set #ticks_per_second fb_config 20
-scoreboard players set #milliblocks_per_block fb_config 1000
-scoreboard players operation #fireball_power_ramp_distance_milliblocks fb_config = #fireball_power_ramp_distance_blocks fb_config
-scoreboard players operation #fireball_power_ramp_distance_milliblocks fb_config *= #milliblocks_per_block fb_config
+# Keep the client-side input templates out of server-side macro expansion.
+data modify storage firebally:config dialog set value {"type":"minecraft:confirmation","title":"Firebally Config","body":{"type":"minecraft:plain_message","contents":"Use whole numbers. Save applies all settings.","width":300},"inputs":[{"type":"minecraft:text","key":"initial_delay","label":"Initial delay (seconds)","width":300,"max_length":10},{"type":"minecraft:text","key":"respawn_delay","label":"Respawn delay (seconds)","width":300,"max_length":10},{"type":"minecraft:text","key":"regular_delay","label":"Fireball cooldown (seconds)","width":300,"max_length":10},{"type":"minecraft:text","key":"power","label":"Maximum power (1-127)","width":300,"max_length":10},{"type":"minecraft:text","key":"ramp_distance","label":"Power ramp distance (blocks)","width":300,"max_length":10},{"type":"minecraft:text","key":"speed","label":"Speed (1000 = 1 block/tick)","width":300,"max_length":10}],"yes":{"label":"Save","action":{"type":"minecraft:dynamic/run_command","template":"function firebally:config/apply {initial_delay:\"$(initial_delay)\",respawn_delay:\"$(respawn_delay)\",regular_delay:\"$(regular_delay)\",power:\"$(power)\",ramp_distance:\"$(ramp_distance)\",speed:\"$(speed)\"}"}},"no":{"label":"Cancel"}}
+execute store result storage firebally:config initial_delay int 1 run scoreboard players get #initial_fireball_delay_seconds fb_config
+execute store result storage firebally:config respawn_delay int 1 run scoreboard players get #respawn_fireball_delay_seconds fb_config
+execute store result storage firebally:config regular_delay int 1 run scoreboard players get #regular_fireball_delay_seconds fb_config
+execute store result storage firebally:config power int 1 run scoreboard players get #fireball_power fb_config
+execute store result storage firebally:config ramp_distance int 1 run scoreboard players get #fireball_power_ramp_distance_blocks fb_config
+execute store result storage firebally:config speed int 1 run scoreboard players get #fireball_speed_milliblocks_per_tick fb_config
+function firebally:config/prefill with storage firebally:config
