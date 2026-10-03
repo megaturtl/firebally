@@ -35,4 +35,4 @@ execute store result entity @e[type=fireball,tag=fb_new,limit=1] Motion[2] doubl
 kill @e[type=marker,tag=fb_ahead]
 tag @e[type=fireball,tag=fb_new] remove fb_new
 
-playsound minecraft:entity.ghast.shoot hostile @a ~ ~ ~ 2
+playsound minecraft:entity.ghast.shoot hostile @a ~ ~ ~ 12
