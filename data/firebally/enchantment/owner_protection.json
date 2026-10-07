@@ -24,6 +24,15 @@
               "range": 1
             },
             {
+              "condition": "minecraft:value_check",
+              "value": {
+                "type": "minecraft:score",
+                "target": {"type": "minecraft:fixed", "name": "#protect_last_interactor"},
+                "score": "fb_config"
+              },
+              "range": 1
+            },
+            {
               "condition": "minecraft:damage_source_properties",
               "predicate": {
                 "direct_entity": {
