@@ -1,0 +1,5 @@
+{
+  "function": "minecraft:set_enchantments",
+  "enchantments": {"firebally:owner_protection": 0},
+  "add": false
+}

@@ -1,12 +1,25 @@
-MC Version: 26.1
+Datapack for a MC 26.1 manhunt with high power fireballs.
 
-Use `/team join hunters <player>` to set hunters, then `/function firebally:start` to start the game.
-Only hunters receive fireballs while the game is running. Use `/function firebally:stop` to remove them when the game ends.
+## How the game works
 
-The player who launches a fireball (or most recently hits it) gets resistance 255 while that fireball exists.
+- Hunters receive fireballs that work like bedwars fireballs (right-click to launch).
+- Hunters have a separate game start delay (default 30 seconds). The normal fireball cooldown applies after launches and deaths.
+- The tablist shows each hunter's countdown. `0` means their fireball is ready.
+- Fireballs can be deflected, and whoever has interacted with a fireball last takes no damage from that specific fireball.
+- Other damage, like fire from the explosion, will still apply.
+- Fireballs gain power as they travel, up to the configured maximum (default 100). Deflection does not reset traveled distance.
 
-Ops can use `/function firebally:config` to open a dialog to configure the fireball behaviour.
-If a delay time is updated, the new value won't apply to active timers (only after the timer restarts due to death or fire etc.).
+The datapack adds a protection enchantment to worn equipment. Players without armour receive temporary chainmail boots with no model. This is how the fireball protection mechanic works and doesn't provide actual armour to the player. Stopping the game removes the temporary boots and protection from worn equipment.
 
-Each hunter has a separate countdown in the tablist. It shows `0` when their fireball is ready. The action bar shows the countdown only during the cooldown.
-Fireballs start at power 1 and reach the configured max power after travelling the configured distance. They are also removed at the upper build limit.
+## Commands
+
+Run these commands as op:
+
+| Command | Purpose |
+| --- | --- |
+| `/team join hunters <player>` | Assign a player as a hunter.|
+| `/function firebally:config` | Set the game start delay, fireball cooldown, speed, maximum power, and distance to reach maximum power. |
+| `/function firebally:start` | Start the game and the hunter release countdown. |
+| `/function firebally:stop` | Stop the game and remove fireballs. |
+
+The config dialog shows the current settings. Change only the fields you need, then select **Save**.

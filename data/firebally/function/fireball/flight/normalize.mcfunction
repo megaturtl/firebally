@@ -1,0 +1,1 @@
+$execute positioned 0.0 0.0 0.0 positioned ~$(x) ~$(y) ~$(z) summon marker run function firebally:fireball/flight/direction with storage firebally:flight
